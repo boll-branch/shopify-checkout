@@ -1,0 +1,55 @@
+{
+  "name": "@boll-and-branch/shopify-checkout",
+  "version": "0.0.10",
+  "description": "A minimal Shopify checkout client for headless storefronts - forked from https://github.com/getnacelle/nacelle-js/ as a standalone under Apache 2.0",
+  "author": "Boll and Branch",
+  "homepage": "https://github.com/boll-branch/shopify-checkout#readme",
+  "license": "Apache-2.0",
+  "private": true,
+  "main": "./dist/nacelle-shopify-checkout.umd.js",
+  "module": "./dist/nacelle-shopify-checkout.es.js",
+  "unpkg": "./dist/nacelle-shopify-checkout.iife.js",
+  "jsdelivr": "./dist/nacelle-shopify-checkout.iife.js",
+  "exports": {
+    ".": {
+      "import": "./dist/nacelle-shopify-checkout.es.js",
+      "require": "./dist/nacelle-shopify-checkout.umd.js"
+    }
+  },
+  "types": "./dist/types/client/index.d.ts",
+  "sideEffects": false,
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boll-branch/shopify-checkout.git"
+  },
+  "scripts": {
+    "build": "vite build && tsc && mv dist/src dist/types",
+    "analyze": "vite build --config analyze.config.js",
+    "lint": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest --watch",
+    "test:ci": "jest --silent --runInBand --collectCoverage"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "cross-fetch": "^3.1.4",
+    "jest": "^27.0.1",
+    "rollup-plugin-transform-tagged-template": "^0.0.3",
+    "rollup-plugin-visualizer": "^5.5.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "4.4.2",
+    "vite": "^2.6.14"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
