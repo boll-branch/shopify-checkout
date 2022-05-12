@@ -1,4 +1,8 @@
-import path from 'path';
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import { defineConfig } from 'vite';
 import transformTaggedTemplate from 'rollup-plugin-transform-tagged-template';
 
@@ -7,9 +11,9 @@ export const config = {
   build: {
     lib: {
       entry: 'src/client/index.ts',
-      fileName: (format) => `nacelle-shopify-checkout.${format}.js`,
+      fileName: (format) => `boll-branch-shopify-checkout.${format}.js`,
       formats: ['es', 'umd', 'iife'],
-      name: 'NacelleShopifyCheckout'
+      name: 'BollBranchShopifyCheckout'
     },
     rollupOptions: {
       treeshake: 'smallest'

@@ -1,3 +1,8 @@
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import {
   checkoutLineItemsReplace as checkoutLineItemsReplaceMutation,
   CheckoutLineItemsReplaceData
@@ -44,6 +49,9 @@ export default async function checkoutLineItemsReplace({
   }
 
   if (data?.checkoutLineItemsReplace.checkout) {
-    return buildCheckout(data.checkoutLineItemsReplace.checkout);
+    return buildCheckout({
+      checkout: data?.checkoutLineItemsReplace.checkout,
+      checkoutUserErrors: data?.checkoutLineItemsReplace.userErrors
+    });
   }
 }

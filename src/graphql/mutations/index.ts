@@ -7,12 +7,12 @@ import { gql } from '../../utils';
 import {
   ShopifyCheckoutUserError,
   ShopifyCheckoutResponseProperties,
-  ShopifyCheckoutCreateResponse
+  ShopifyCheckoutResponse
 } from '../../checkout-client.types';
 import fragments from '../fragments';
 
 export interface CheckoutCreateData {
-  checkoutCreate: ShopifyCheckoutCreateResponse;
+  checkoutCreate: ShopifyCheckoutResponse;
 }
 
 export const checkoutCreate = gql`
@@ -56,10 +56,7 @@ export const checkoutLineItemsReplace = gql`
 `;
 
 export interface CheckoutAttributesUpdateData {
-  checkoutAttributesUpdateV2: {
-    checkout: ShopifyCheckoutResponseProperties | null;
-    checkoutUserErrors: ShopifyCheckoutUserError[];
-  };
+  checkoutAttributesUpdateV2: ShopifyCheckoutResponse;
 }
 
 export const checkoutAttributesUpdate = gql`
@@ -102,10 +99,7 @@ export const checkoutDiscountCodeApplyV2 = gql`
 `;
 
 export interface CheckoutDiscountCodeApplyV2Data {
-  checkoutDiscountCodeApplyV2: {
-    checkout: ShopifyCheckoutResponseProperties | null;
-    checkoutUserErrors: ShopifyCheckoutUserError[];
-  };
+  checkoutDiscountCodeApplyV2: ShopifyCheckoutResponse;
 }
 
 export const checkoutDiscountCodeRemove = gql`
@@ -124,8 +118,5 @@ export const checkoutDiscountCodeRemove = gql`
 `;
 
 export interface CheckoutDiscountCodeRemoveData {
-  checkoutDiscountCodeRemove: {
-    checkout: ShopifyCheckoutResponseProperties | null;
-    checkoutUserErrors: ShopifyCheckoutUserError[];
-  };
+  checkoutDiscountCodeRemove: ShopifyCheckoutResponse;
 }

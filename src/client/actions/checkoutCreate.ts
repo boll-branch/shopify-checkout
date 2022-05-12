@@ -1,3 +1,8 @@
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import { buildCheckout, handleShopifyError } from '../../utils';
 import {
   checkoutCreate as checkoutCreateMutation,

@@ -45,7 +45,7 @@ describe('putCheckout', () => {
         lineItems: cartItemsToCheckoutItems({ cartItems })
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
-      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate.checkout)
+      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate)
     );
 
     expect(fetchClient).toHaveBeenCalledTimes(1);
@@ -84,7 +84,7 @@ describe('putCheckout', () => {
         note
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
-      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate.checkout)
+      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate)
     );
 
     expect(fetchClient).toHaveBeenCalledTimes(1);
@@ -122,7 +122,7 @@ describe('putCheckout', () => {
         queueToken
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
-      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate.checkout)
+      buildCheckout(checkouts.checkoutCreate.data.checkoutCreate)
     );
 
     expect(fetchClient).toHaveBeenCalledTimes(1);
@@ -172,7 +172,7 @@ describe('putCheckout', () => {
         note
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
-      buildCheckout(checkoutUpdate.data.checkoutAttributesUpdateV2.checkout)
+      buildCheckout(checkoutUpdate.data.checkoutAttributesUpdateV2)
     );
 
     expect(fetchClient).toHaveBeenCalledTimes(1);
@@ -216,9 +216,10 @@ describe('putCheckout', () => {
         lineItems: newCartItems
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
-      buildCheckout(
-        checkoutLineItemsReplace.data.checkoutLineItemsReplace.checkout
-      )
+      buildCheckout({
+        checkout: checkoutLineItemsReplace.data.checkoutLineItemsReplace.checkout,
+        checkoutUserErrors: checkoutLineItemsReplace.data.checkoutLineItemsReplace.userErrors
+      })
     );
 
     expect(fetchClient).toHaveBeenCalledTimes(1);

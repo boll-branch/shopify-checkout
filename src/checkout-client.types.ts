@@ -85,14 +85,14 @@ export interface ShopifyCheckoutResponseProperties {
   discountApplications: ShopifyCheckoutResponseDiscountConnection;
 };
 
+export interface ShopifyCheckoutResponse {
+  checkout: ShopifyCheckoutResponseProperties | null;
+  checkoutUserErrors: ShopifyCheckoutUserError[];
+}
+
 export type BuildCheckoutParams = ShopifyCheckoutResponseProperties & {
   customAttributes?: Attribute[];
   note?: string;
-};
-
-export interface ShopifyCheckoutCreateResponse {
-  checkout: BuildCheckoutParams;
-  checkoutUserErrors: ShopifyCheckoutResponseUserError[];
 };
 
 export interface CartItem {

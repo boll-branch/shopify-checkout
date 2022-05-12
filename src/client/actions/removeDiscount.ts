@@ -1,3 +1,8 @@
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import {
   buildCheckout,
   handleShopifyError,
@@ -55,7 +60,7 @@ export default async function removeDiscount({
     }
 
     if (data?.checkoutDiscountCodeRemove.checkout) {
-      return buildCheckout(data.checkoutDiscountCodeRemove.checkout);
+      return buildCheckout(data.checkoutDiscountCodeRemove);
     }
   } catch (error) {
     throw new Error(String(error));

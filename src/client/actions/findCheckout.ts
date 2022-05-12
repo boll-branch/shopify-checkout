@@ -1,3 +1,8 @@
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import {
   getCheckout as getCheckoutQuery,
   GetCheckoutData
@@ -39,6 +44,9 @@ export default async function findCheckout({
       message: 'Checkout response has no data'
     });
   } else {
-    return buildCheckout(data.node);
+    return buildCheckout({
+      checkout: data.node,
+      checkoutUserErrors: []
+    });
   }
 }

@@ -40,7 +40,7 @@ describe('discount', () => {
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
       buildCheckout(
-        checkouts.applyDiscount.data.checkoutDiscountCodeApplyV2.checkout
+        checkouts.applyDiscount.data.checkoutDiscountCodeApplyV2
       )
     );
   });
@@ -62,7 +62,7 @@ describe('discount', () => {
       }).then((checkout) => checkout)
     ).resolves.toMatchObject(
       buildCheckout(
-        checkouts.removeDiscount.data.checkoutDiscountCodeRemove.checkout
+        checkouts.removeDiscount.data.checkoutDiscountCodeRemove
       )
     );
   });

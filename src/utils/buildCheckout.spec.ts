@@ -3,7 +3,10 @@ import { emptyCheckout } from '../../__tests__/mocks';
 
 describe('buildCheckout', () => {
   it('builds a checkout without lines & discounts', async () => {
-    const checkout = buildCheckout(emptyCheckout);
+    const checkout = buildCheckout({
+      checkout: emptyCheckout,
+      checkoutUserErrors: []
+    });
 
     expect(checkout).toMatchObject({
       completed: false,
@@ -16,43 +19,46 @@ describe('buildCheckout', () => {
 
   it('builds a checkout with lines & discounts', async () => {
     const checkout = buildCheckout({
-      ...emptyCheckout,
-      lineItems: {
-        edges: [
-          {
-            node: {
-              customAttributes: [],
-              discountAllocations: [],
-              id: 'lineId',
-              quantity: 1,
-              unitPrice: {
-                amount: '1',
-                currencyCode: 'USD'
-              },
-              title: 'title',
-              variant: {
-                id: 'variantId'
+      checkout: {
+        ...emptyCheckout,
+        lineItems: {
+          edges: [
+            {
+              node: {
+                customAttributes: [],
+                discountAllocations: [],
+                id: 'lineId',
+                quantity: 1,
+                unitPrice: {
+                  amount: '1',
+                  currencyCode: 'USD'
+                },
+                title: 'title',
+                variant: {
+                  id: 'variantId'
+                }
               }
             }
-          }
-        ]
+          ]
+        },
+        discountApplications: {
+          edges: [
+            {
+              node: {
+                allocationMethod: 'method',
+                targetSelection: 'line',
+                targetType: 'type',
+                value: {
+                  amount: '123',
+                  currencyCode: 'USD',
+                  percentage: 0
+                }
+              }
+            }
+          ]
+        }
       },
-      discountApplications: {
-        edges: [
-          {
-            node: {
-              allocationMethod: 'method',
-              targetSelection: 'line',
-              targetType: 'type',
-              value: {
-                amount: '123',
-                currencyCode: 'USD',
-                percentage: 0
-              }
-            }
-          }
-        ]
-      }
+      checkoutUserErrors: []
     });
 
     expect(checkout).toMatchObject({

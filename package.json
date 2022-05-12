@@ -6,14 +6,14 @@
   "homepage": "https://github.com/boll-branch/shopify-checkout#readme",
   "license": "Apache-2.0",
   "private": true,
-  "main": "./dist/nacelle-shopify-checkout.umd.js",
-  "module": "./dist/nacelle-shopify-checkout.es.js",
-  "unpkg": "./dist/nacelle-shopify-checkout.iife.js",
-  "jsdelivr": "./dist/nacelle-shopify-checkout.iife.js",
+  "main": "./dist/boll-branch-shopify-checkout.umd.js",
+  "module": "./dist/boll-branch-shopify-checkout.es.js",
+  "unpkg": "./dist/boll-branch-shopify-checkout.iife.js",
+  "jsdelivr": "./dist/boll-branch-shopify-checkout.iife.js",
   "exports": {
     ".": {
-      "import": "./dist/nacelle-shopify-checkout.es.js",
-      "require": "./dist/nacelle-shopify-checkout.umd.js"
+      "import": "./dist/boll-branch-shopify-checkout.es.js",
+      "require": "./dist/boll-branch-shopify-checkout.umd.js"
     }
   },
   "types": "./dist/types/client/index.d.ts",
@@ -37,6 +37,9 @@
     "precommit": "lint-staged",
     "test": "jest --watch",
     "test:ci": "jest --silent --runInBand --collectCoverage"
+  },
+  "dependencies": {
+    "@nacelle/client-js-sdk": "^1.0.5"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.15.0",

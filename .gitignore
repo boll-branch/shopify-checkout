@@ -1,5 +1,7 @@
 node_modules/
-dist/
+
+# once this is published on npm so we can use a prepublish hook to compile, remove this!
+#dist/
 
 *.log
 npm-debug.log*

@@ -1,3 +1,8 @@
+/**
+ * Modified by David Rekow <drekow@bollandbranch.com>
+ */
+
+
 import { buildCheckout, handleShopifyError } from '../../utils';
 import {
   checkoutAttributesUpdate as checkoutAttributesUpdateMutation,
@@ -53,6 +58,6 @@ export default async function checkoutAttributesUpdate({
   }
 
   if (data?.checkoutAttributesUpdateV2.checkout) {
-    return buildCheckout(data.checkoutAttributesUpdateV2.checkout);
+    return buildCheckout(data.checkoutAttributesUpdateV2);
   }
 }
