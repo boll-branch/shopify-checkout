@@ -3,7 +3,7 @@
  */
 
 
-import { buildCheckout, handleShopifyError } from '../../utils';
+import { buildCheckout } from '../../utils';
 import {
   checkoutCreate as checkoutCreateMutation,
   CheckoutCreateData
@@ -41,7 +41,7 @@ export default async function createCheckout({
   };
 
   try {
-    const { data, errors } = await gqlClient<
+    const { data } = await gqlClient<
       CheckoutCreateVariables,
       CheckoutCreateData
     >({
@@ -50,12 +50,6 @@ export default async function createCheckout({
     }).catch((err) => {
       throw new Error(err);
     });
-
-    const errs = errors || data?.checkoutCreate.checkoutUserErrors;
-
-    if (errs?.length) {
-      handleShopifyError(errors, { caller: 'checkoutCreate' });
-    }
 
     if (data?.checkoutCreate.checkout) {
       return buildCheckout(data.checkoutCreate);

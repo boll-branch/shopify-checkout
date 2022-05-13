@@ -278,20 +278,13 @@ function createCheckout(_0) {
     };
     try {
       const {
-        data,
-        errors
+        data
       } = yield gqlClient({
         query,
         variables
       }).catch((err) => {
         throw new Error(err);
       });
-      const errs = errors || (data == null ? void 0 : data.checkoutCreate.checkoutUserErrors);
-      if (errs == null ? void 0 : errs.length) {
-        handleShopifyError(errors, {
-          caller: "checkoutCreate"
-        });
-      }
       if (data == null ? void 0 : data.checkoutCreate.checkout) {
         return buildCheckout(data.checkoutCreate);
       }

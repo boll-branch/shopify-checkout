@@ -274,53 +274,6 @@ describe('putCheckout', () => {
     ).rejects.toThrow(networkErrorMessage);
   });
 
-  it('throws an error if an invalid `variantId` is provided', async () => {
-    expect.assertions(1);
-
-    const invalidVariantId = 'not-a-valid-id';
-    const checkoutIdNotValid = shopifyErrors.invalidVariantId(invalidVariantId);
-    const problemExplanation =
-      checkoutIdNotValid.extensions.problems[0].explanation;
-
-    mocked(fetchClient).mockImplementationOnce(
-      (): Promise<any> =>
-        mockJsonResponse<mutations.CheckoutCreateData>({
-          errors: [checkoutIdNotValid]
-        })
-    );
-
-    await putCheckout({
-      gqlClient,
-      lineItems: [
-        { customAttributes: [], variantId: invalidVariantId, quantity: 1 }
-      ]
-    }).catch((e) => expect(String(e).includes(problemExplanation)).toBe(true));
-  });
-
-  it('throws an error if the `checkoutCreate` mutation variables include a value of an incorrect type', async () => {
-    expect.assertions(1);
-
-    mocked(fetchClient).mockImplementationOnce(
-      (): Promise<any> =>
-        mockJsonResponse<mutations.CheckoutCreateData>({
-          errors: [shopifyErrors.typeError]
-        })
-    );
-
-    // TypeScript won't let us actually do this in the `putCheckout` call,
-    // but given the mock implementation, we can pretend that we've passed
-    // a line item quantity as a string ("2") instead of a number (2).
-
-    await putCheckout({
-      gqlClient,
-      lineItems: cartItemsToCheckoutItems({
-        cartItems: [{ ...cartItems[0] }]
-      })
-    }).catch((e) =>
-      expect(String(e).includes('Could not coerce value')).toBe(true)
-    );
-  });
-
   it('throws an error if an invalid `id` is provided', async () => {
     // we'll test both `checkoutLineItemsReplace` and `checkoutAttributesUpdate`
     expect.assertions(2);
